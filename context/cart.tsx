@@ -53,28 +53,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       });
   };
 
-  // const setCartToState = () => {
-  //   const storedCart = localStorage.getItem("cart");
-  //   console.log(storedCart);
-  //   if (storedCart) {
-  //     const parsedCart: { cartItems: Product[] } = JSON.parse(storedCart);
-  //     setCartArr(parsedCart.cartItems);
-  //   } else {
-  //     getCart()
-  //       .then((data) => {
-  //         console.log("api fetching");
-  //         localStorage.setItem(
-  //           "cart",
-  //           JSON.stringify({ cartItems: data.products })
-  //         );
-  //         setCartArr(data.products);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Failed to fetch cart:", error);
-  //       });
-  //   }
-  // };
-
+ 
   const addItemToCart = ({
     id,
     title,

@@ -14,6 +14,11 @@ import { useContext } from "react";
 function CheckOutPage() {
   const { cartArr } = useContext<CartContextType>(CartContext);
 
+  let item;
+  if (typeof window !== "undefined") {
+    item = localStorage.getItem("promoCode");
+  }
+
   return (
     <main className="container overflow-x-hidden">
       <div className="flex justify-center w-full md:ml-[380px]">
@@ -44,14 +49,13 @@ function CheckOutPage() {
             <div className="px-4">
               <h2 className="text-lg font-semibold mb-2">Promo Code</h2>
               <p className="ml-1 text-emerald-600 font-semibold text-xs">
-                {localStorage.getItem("promoCode") !== "HIREME"
+                {item !== "HIREME"
                   ? "No promo code"
                   : "HIREME (25% discount coupon applied)"}
               </p>
             </div>
             <div>
               <Summary products={cartArr} page="Payment" />
-              
             </div>
           </div>
         </div>
@@ -61,3 +65,4 @@ function CheckOutPage() {
 }
 
 export default CheckOutPage;
+
