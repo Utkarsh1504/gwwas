@@ -8,6 +8,7 @@ import Payment from "@/components/Payment";
 import Progress from "@/components/Progress";
 import useCart from "@/hooks/useCart";
 import { ArrowUturnLeftIcon } from "@heroicons/react/16/solid";
+import { Suspense } from "react";
 
 const PaymentPage = () => {
   const router = useRouter();
@@ -37,30 +38,29 @@ const PaymentPage = () => {
         </Link>
         <Progress active="payment" />
       </div>
-      <div className="flex justify-center w-full h-full">
-        <div className="border border-gray-200 p-4 rounded-xl shadow">
-          <h2 className="font-bold text-2xl mb-4 px-2 text-center">
-            Select a Payment Method
-          </h2>
-          <Payment paymentMethods={cart.data?.paymentMethods} />
-          <Divider className="m-2" label="" />
-          <div className="flex justify-between">
+      <Suspense fallback={<Loader />}>
+        <div className="flex justify-center w-full h-full">
+          <div className="border border-gray-200 p-4 rounded-xl shadow">
             <h2 className="font-bold text-2xl mb-4 px-2 text-center">
-              Total Amount:{" "}
+              Select a Payment Method
             </h2>
-            <span className="text-emerald-600">
-              {" "}
-              $ {totalAmount}
-            </span>
+            <Payment paymentMethods={cart.data?.paymentMethods} />
+            <Divider className="m-2" label="" />
+            <div className="flex justify-between">
+              <h2 className="font-bold text-2xl mb-4 px-2 text-center">
+                Total Amount:{" "}
+              </h2>
+              <span className="text-emerald-600"> $ {totalAmount}</span>
+            </div>
+            <button
+              className="bg-emerald-500 p-2 w-full text-white hover:bg-emerald-600 outline-none border-none rounded-xl font-bold text-medium"
+              onClick={() => router.push("/confirmation")}
+            >
+              Confirm
+            </button>
           </div>
-          <button
-            className="bg-emerald-500 p-2 w-full text-white hover:bg-emerald-600 outline-none border-none rounded-xl font-bold text-medium"
-            onClick={() => router.push("/confirmation")}
-          >
-            Confirm
-          </button>
         </div>
-      </div>
+      </Suspense>
     </main>
   );
 };

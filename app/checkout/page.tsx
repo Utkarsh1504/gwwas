@@ -9,15 +9,33 @@ import {
 import Summary from "@/components/Summary";
 import Link from "next/link";
 import { CartContext, CartContextType } from "@/context/cart";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+
+type localObjType = {
+  coupon: string | null,
+  mobile: string | null,
+  location: string | null,
+}
 
 function CheckOutPage() {
   const { cartArr } = useContext<CartContextType>(CartContext);
+  const [localObj, setLocalObj] = useState<localObjType>({
+    coupon: "",
+    mobile: "",
+    location:""
+  });
 
-  let item;
-  if (typeof window !== "undefined") {
-    item = localStorage.getItem("promoCode");
-  }
+  useEffect(() => {
+    const coupon = localStorage.getItem("promoCode");
+    const mobile = localStorage.getItem("mobile");
+    const location = localStorage.getItem("location");
+
+    setLocalObj({
+      coupon:coupon,
+      mobile:mobile,
+      location:location
+    });
+  }, []);
 
   return (
     <main className="container overflow-x-hidden">
@@ -39,17 +57,17 @@ function CheckOutPage() {
               <h2 className="text-lg font-semibold mb-4">User Details</h2>
               <div className="mb-4 flex items-center">
                 <MapPinIcon className="h-6 w-6 text-gray-400 mr-3" />
-                <span>{localStorage.getItem("location")}</span>
+                <span>{localObj.location}</span>
               </div>
               <div className="mb-4 flex items-center">
                 <PhoneIcon className="h-6 w-6 text-gray-400 mr-3" />
-                <span>{localStorage.getItem("mobile")}</span>
+                <span>{localObj.mobile}</span>
               </div>
             </div>
             <div className="px-4">
               <h2 className="text-lg font-semibold mb-2">Promo Code</h2>
               <p className="ml-1 text-emerald-600 font-semibold text-xs">
-                {item !== "HIREME"
+                {localObj.coupon !== "HIREME"
                   ? "No promo code"
                   : "HIREME (25% discount coupon applied)"}
               </p>
@@ -65,4 +83,3 @@ function CheckOutPage() {
 }
 
 export default CheckOutPage;
-

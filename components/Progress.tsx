@@ -11,7 +11,7 @@ const Progress: React.FC<Props> = (props) => {
             className={
               props.active === "checkout"
                 ? "opacity-100 text-emerald-600 bg-emerald-100 p-2 border border-emerald-300 rounded-xl"
-                : "opacity-50 hover:opacity-100 hover:text-emerald-500 transition ml-2 sm:text-xs"
+                : "opacity-50 hover:opacity-100 hover:text-emerald-500 transition ml-2"
             }
           >
             1. Checkout
