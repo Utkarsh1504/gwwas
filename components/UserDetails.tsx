@@ -1,3 +1,4 @@
+"use client";
 import { MapPinIcon, PhoneIcon } from "@heroicons/react/16/solid";
 import React, { useEffect, useState } from "react";
 

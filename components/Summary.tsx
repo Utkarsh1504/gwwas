@@ -16,9 +16,9 @@ function Summary(props: Props) {
     return acc + prod.quantity * prod.price;
   }, 0);
 
-  const applied = localStorage.getItem("applied");
-
+  
   useEffect(() => {
+    const applied = localStorage.getItem("applied");
     if (applied === "true") {
       const discount = totalCost * 0.25;
       setTotalDiscount(discount);
@@ -27,7 +27,7 @@ function Summary(props: Props) {
       setTotalDiscount(0);
       setTotalAmount(totalCost + 10);
     }
-  }, [applied, totalCost]);
+  }, [totalCost]);
 
   // const totalCost = props.products.reduce((acc, prod) => {
   //   return acc + prod.quantity * prod.price;

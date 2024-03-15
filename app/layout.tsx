@@ -4,6 +4,8 @@ import "./globals.css";
 import { GlobalProvider } from "./globalProvider";
 import Header from "@/components/Header";
 import QueryProvider from "@/providers/QueryProviders";
+import { Suspense } from "react";
+import Loader from "@/components/Loader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +26,9 @@ export default function RootLayout({
 
         <GlobalProvider>
           <QueryProvider>
-            <main>{children}</main>
+            <Suspense fallback={<Loader />}>
+              <main>{children}</main>
+            </Suspense>
           </QueryProvider>
         </GlobalProvider>
       </body>
