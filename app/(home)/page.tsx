@@ -12,16 +12,18 @@ import { MinusIcon, PlusIcon, XMarkIcon } from "@heroicons/react/16/solid";
 import Image from "next/image";
 
 const CartPage: React.FC = () => {
-  const { addItemToCart, deleteItemFromCart, cartArr } = useContext<CartContextType>(CartContext);
+  const { addItemToCart, deleteItemFromCart, cartArr } =
+    useContext<CartContextType>(CartContext);
 
   const increaseQty = (product: Product) => {
     const newQty = product?.quantity + 1;
     const item = { ...product, quantity: newQty };
-
-    if (newQty > Number(product.quantity)) return;
+    
+    // if (newQty > Number(product.quantity)) return;
 
     addItemToCart(item);
   };
+  
 
   const decreaseQty = (product: Product) => {
     const newQty = product?.quantity - 1;
@@ -72,7 +74,10 @@ const CartPage: React.FC = () => {
                       </div>
                       <figcaption className="ml-3">
                         <p>
-                          <a href="#" className="hover:text-blue-600">
+                          <a
+                            href="#"
+                            className="hover:text-emerald-500 transition-all duration-500"
+                          >
                             {product.title}
                           </a>
                         </p>
@@ -83,7 +88,7 @@ const CartPage: React.FC = () => {
                       </figcaption>
                     </figure>
                   </div>
-                  <div className="w-24">
+                  <div className="w-24 mr-2">
                     <div className="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
                       <button
                         data-action="decrement"
@@ -94,7 +99,7 @@ const CartPage: React.FC = () => {
                           <MinusIcon className="w-5 h-5" />
                         </span>
                       </button>
-                      <p className="p-2 mr-1 bg-emerald-500  border border-[#e5e7eb] rounded-xl hover:bg-emerald-600 text-white">
+                      <p className="px-4 py-2 mr-1 bg-emerald-500  border border-[#e5e7eb] rounded-xl hover:bg-emerald-600 text-white">
                         {product.quantity}
                       </p>
                       <button

@@ -1,5 +1,5 @@
 "use client";
-import { MoonIcon, SunIcon } from "@heroicons/react/16/solid";
+import { ArrowPathIcon, MoonIcon, SunIcon } from "@heroicons/react/16/solid";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -27,6 +27,9 @@ const Header = () => {
           </button>
           <button className="p-2 mr-4 border border-[#e5e7eb] rounded-xl hover:bg-gray-200">
             <MoonIcon className="text-black opacity-55 hover:text-emerald-500 hover:opacity-100 w-6 h-6" />
+          </button>
+          <button onClick={()=>{window.location.reload()}} className="p-2 mr-4 border border-[#e5e7eb] rounded-xl hover:bg-gray-200">
+            <ArrowPathIcon className="text-emerald-500 opacity-55 hover:opacity-100 w-6 h-6" />
           </button>
         </div>
       </div>

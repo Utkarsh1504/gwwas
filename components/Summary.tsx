@@ -45,7 +45,7 @@ function Summary(props: Props) {
         <div className="space-y-2">
           <div className="flex justify-between text-medium opacity-55">
             <p className="font-semibold ">Order Amount</p>
-            <p className="opacity-60 font-bold">${totalAmount.toFixed(2)}</p>
+            <p className="opacity-60 font-bold">${totalCost.toFixed(2)}</p>
           </div>
           <div className="flex justify-between text-medium opacity-55">
             <p className="font-semibold">Delivery Fee</p>

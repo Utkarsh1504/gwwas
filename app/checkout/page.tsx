@@ -12,17 +12,17 @@ import { CartContext, CartContextType } from "@/context/cart";
 import { useContext, useEffect, useState } from "react";
 
 type localObjType = {
-  coupon: string | null,
-  mobile: string | null,
-  location: string | null,
-}
+  coupon: string | null;
+  mobile: string | null;
+  location: string | null;
+};
 
 function CheckOutPage() {
   const { cartArr } = useContext<CartContextType>(CartContext);
   const [localObj, setLocalObj] = useState<localObjType>({
     coupon: "",
     mobile: "",
-    location:""
+    location: "",
   });
 
   useEffect(() => {
@@ -31,9 +31,9 @@ function CheckOutPage() {
     const location = localStorage.getItem("location");
 
     setLocalObj({
-      coupon:coupon,
-      mobile:mobile,
-      location:location
+      coupon: coupon,
+      mobile: mobile,
+      location: location,
     });
   }, []);
 
@@ -63,6 +63,22 @@ function CheckOutPage() {
                 <PhoneIcon className="h-6 w-6 text-gray-400 mr-3" />
                 <span>{localObj.mobile}</span>
               </div>
+            </div>
+            <div className="px-4 my-2">
+              <p className="text-lg font-semibold my-2">Order List</p>
+              {cartArr.map((product) => (
+                <div key={product.id} className="">
+                  <div className="flex justify-between space-y-4 px-2">
+                    <p className="text-sm w-32 mb-2">{product.title}</p>
+                    <p className="text-xs px-3 py-2 bg-emerald-500 text-white rounded-full">
+                      {product.quantity}
+                    </p>
+                    <p className="text-sm font-semibold">
+                      $ {(product.price * product.quantity).toFixed(2)}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
             <div className="px-4">
               <h2 className="text-lg font-semibold mb-2">Promo Code</h2>

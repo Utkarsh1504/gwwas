@@ -53,7 +53,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       });
   };
 
- 
   const addItemToCart = ({
     id,
     title,

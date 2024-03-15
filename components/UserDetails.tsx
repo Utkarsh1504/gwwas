@@ -43,6 +43,7 @@ const UserAddress: React.FC<UserDetailsProps> = ({ detailsProps }) => {
               onChange={(e) => setLocation(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-emerald-500"
               placeholder="Enter your location"
+              required
             />
           </div>
           <div className="mb-4 flex items-center gap-2">
@@ -55,6 +56,7 @@ const UserAddress: React.FC<UserDetailsProps> = ({ detailsProps }) => {
               onChange={(e) => setMobile(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-emerald-500 focus:border-emerald-500"
               placeholder="Enter your mobile number"
+              required
             />
             <button
               onClick={handleAddAddress}
