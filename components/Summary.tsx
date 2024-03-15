@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Product } from "@/utils/types";
 import Divider from "./Divider";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 type Props = {
@@ -12,13 +11,13 @@ type Props = {
 function Summary(props: Props) {
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalDiscount, setTotalDiscount] = useState(0);
-  const navigate = useRouter();
 
   const totalCost = props.products.reduce((acc, prod) => {
     return acc + prod.quantity * prod.price;
   }, 0);
 
   const applied = localStorage.getItem("applied");
+
   useEffect(() => {
     if (applied === "true") {
       const discount = totalCost * 0.25;
@@ -28,8 +27,7 @@ function Summary(props: Props) {
       setTotalDiscount(0);
       setTotalAmount(totalCost + 10);
     }
-  }, [applied]);
-  // const navigate = useRouter();
+  }, [applied, totalCost]);
 
   // const totalCost = props.products.reduce((acc, prod) => {
   //   return acc + prod.quantity * prod.price;

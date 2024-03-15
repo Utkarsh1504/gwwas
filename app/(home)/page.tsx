@@ -12,8 +12,7 @@ import { MinusIcon, PlusIcon, XMarkIcon } from "@heroicons/react/16/solid";
 import Image from "next/image";
 
 const CartPage: React.FC = () => {
-  const { addItemToCart, deleteItemFromCart, cartArr } =
-    useContext<CartContextType>(CartContext);
+  const { addItemToCart, deleteItemFromCart, cartArr } = useContext<CartContextType>(CartContext);
 
   const increaseQty = (product: Product) => {
     const newQty = product?.quantity + 1;

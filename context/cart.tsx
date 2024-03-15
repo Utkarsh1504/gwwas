@@ -10,9 +10,11 @@ export type CartContextType = {
   deleteItemFromCart: (id: number) => void;
 };
 
-export const CartContext = createContext<CartContextType | undefined>(
-  undefined
-);
+export const CartContext = createContext<CartContextType>({
+  cartArr: [],
+  addItemToCart: () => {},
+  deleteItemFromCart: () => {},
+});
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cartArr, setCartArr] = useState<Product[]>([]);
@@ -23,10 +25,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const setCartToState = () => {
     const storedCart = localStorage.getItem("cart");
-  
+
     if (storedCart) {
       const parsedCart: { cartItems: Product[] } = JSON.parse(storedCart);
-      
+
       if (parsedCart.cartItems.length === 0) {
         fetchCartFromAPI();
       } else {
@@ -36,7 +38,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       fetchCartFromAPI();
     }
   };
-  
+
   const fetchCartFromAPI = () => {
     getCart()
       .then((data) => {
@@ -50,7 +52,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         console.error("Failed to fetch cart:", error);
       });
   };
-  
 
   // const setCartToState = () => {
   //   const storedCart = localStorage.getItem("cart");
